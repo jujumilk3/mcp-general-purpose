@@ -17,8 +17,6 @@ def get_greeting(name: str) -> str:
     return f"Hello, {name}!"
 
 
-mcp = FastMCP("Echo")
-
 @mcp.resource("echo://{message}")
 def echo_resource(message: str) -> str:
     """Echo a message as a resource"""
