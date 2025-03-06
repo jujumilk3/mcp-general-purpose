@@ -3,7 +3,7 @@ import mcp.types as types
 from mcp.server.lowlevel import Server
 from mcp.server.stdio import stdio_server
 
-app = Server("mcp-website-fetcher")
+app = Server("mcp-stdio")
 
 
 async def fetch_website(
