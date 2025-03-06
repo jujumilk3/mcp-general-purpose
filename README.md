@@ -2,7 +2,7 @@
 
 ## Descriptions
 
-stdio - <https://modelcontextprotocol.io/docs/concepts/transports#standard-input%2Foutput-stdio>
+stdio - <https://modelcontextprotocol.io/docs/concepts/transports#standard-input%2Foutput-stdio>  
 SSE - <https://modelcontextprotocol.io/docs/concepts/transports#server-sent-events-sse>
 
 ## Commands
