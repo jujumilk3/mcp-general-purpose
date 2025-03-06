@@ -19,23 +19,31 @@ async def fetch_website(
         response = await client.get(url)
         response.raise_for_status()
         return [types.TextContent(type="text", text=response.text)]
-    
-    
-async def echo_tool(
+
+
+async def echo(
     message: str,
-) -> str:
-    return f"Tool echo: {message}"
+) -> list[types.TextContent | types.ImageContent | types.EmbeddedResource]:
+    return [types.TextContent(type="text", text=f"Tool echo: {message}")]
 
 
 @app.call_tool()
-async def fetch_tool(
+async def call_tool(
     name: str, arguments: dict
 ) -> list[types.TextContent | types.ImageContent | types.EmbeddedResource]:
-    if name != "fetch":
+    print("call_tool", name, arguments)
+    # if name != "fetch":
+    #     raise ValueError(f"Unknown tool: {name}")
+    # if "url" not in arguments:
+    #     raise ValueError("Missing required argument 'url'")
+    # return await fetch_website(arguments["url"])
+    if name == "fetch":
+        return await fetch_website(arguments["url"])
+    elif name == "echo":
+        return await echo(arguments["message"])
+    else:
         raise ValueError(f"Unknown tool: {name}")
-    if "url" not in arguments:
-        raise ValueError("Missing required argument 'url'")
-    return await fetch_website(arguments["url"])
+
 
 @app.list_tools()
 async def list_tools() -> list[types.Tool]:
